@@ -132,7 +132,7 @@ module NexusCli
           :desc => "The id of the repository to use."
         method_option :policy,
           :type => :string,
-          :desc => "Repo policy [RELEASE|SNAPSHOT], RELEASE by default"
+          :desc => "Repo policy [RELEASE|SNAPSHOT|MIXED], RELEASE by default"
         method_option :provider,
           :type => :string,
           :desc => "Repo provider (maven2 by default)"

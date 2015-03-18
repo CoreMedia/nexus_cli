@@ -186,7 +186,7 @@ module NexusCli
       params[:browseable] = true
       params[:indexable] = true
       params[:repoType] = "hosted"
-      params[:repoPolicy] = policy.nil? ? "RELEASE" : ["RELEASE", "SNAPSHOT"].include?(policy) ? policy : "RELEASE" 
+      params[:repoPolicy] = policy.nil? ? "RELEASE" : ["RELEASE", "SNAPSHOT"].include?(policy) ? policy : "RELEASE"
       params[:name] = name
       params[:id] = id.nil? ? sanitize_for_id(name) : sanitize_for_id(id)
       params[:format] = "maven2"
@@ -198,12 +198,12 @@ module NexusCli
       params[:providerRole] = "org.sonatype.nexus.proxy.repository.Repository"
       params[:exposed] = true
       params[:browseable] = true
-      params[:indexable] = true
+      params[:indexable] = ['rubygems-proxy'].include?(provider)? false : true
       params[:repoType] = "proxy"
-      params[:repoPolicy] = policy.nil? ? "RELEASE" : ["RELEASE", "SNAPSHOT"].include?(policy) ? policy : "RELEASE" 
-      params[:checksumPolicy] = "WARN"
-      params[:writePolicy] = "READ_ONLY"
-      params[:downloadRemoteIndexes] = true
+      params[:repoPolicy] = policy.nil? ? "RELEASE" : ["RELEASE", "SNAPSHOT", "MIXED"].include?(policy) ? policy : "RELEASE"
+      params[:checksumPolicy] = ['rubygems-proxy'].include?(provider)? 'IGNORE' : 'WARN'
+      params[:writePolicy] = 'READ_ONLY'
+      params[:downloadRemoteIndexes] = ['rubygems-proxy'].include?(provider)? false : true
       params[:autoBlockActive] = false
       params[:name] = name
       params[:id] = id.nil? ? sanitize_for_id(name) : sanitize_for_id(id)
