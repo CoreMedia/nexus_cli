@@ -3,13 +3,14 @@ require 'httpclient'
 require 'nexus_cli/errors'
 require 'rexml/document'
 require 'yaml'
+require 'active_support'
 require 'active_support/core_ext/hash'
 
 module NexusCli
   DEFAULT_ACCEPT_HEADER = {
     "Accept" => "application/json"
   }.freeze
-  
+
   DEFAULT_CONTENT_TYPE_HEADER = {
     "Content-Type" => "application/json"
   }.freeze
